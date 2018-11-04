@@ -15,12 +15,14 @@ The applicaton for **Predicting Swiss Fertility measure on socio-economic indica
 The prediction model is based on standardized fertility measure and socio-economic indicators for each of 47 French-speaking provinces of Switzerland at about 1888, and is available in R as dataset **swiss**.
 The 5 indicators are Agriculture, Examination (army), Education, Catholic, and Infant Mortality and presented in percentage of total polulation. (*Please refer to R help for further details.*).  
   
-The following slides provide and overview and instructions about the application.
+The following slides provide an overview and instructions about the application.  
+This presentation is available on Github <https://snenning.github.io/coursera_ddp/MyAppDDP_W4/MyAppDDP_W4_pres.html>.  
+Link to R code (ui.R and server.R) for application is <https://github.com/snenning/coursera_ddp/tree/gh-pages/MyAppDDP_W4>
 
 ## Instructions for executing and using application
 
 - Executing application:  
-The application is executed from a html website hosted on Github.  
+The application is executed from a html website hosted on Shiny server.  
 Link to application is <https://snenning.shinyapps.io/myappddp_w4/>.
 
 - Using application for predicting fertility:  
