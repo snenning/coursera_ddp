@@ -1,0 +1,56 @@
+---
+title: "Application for Predicting Swiss Fertility measure on socio-economic indicators"
+author: "S Nenning"
+date: "3 November 2018"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Background Information
+
+The applicaton for **Predicting Swiss Fertility measure on socio-economic indicators** is developed with R package **"shiny"**.  
+The prediction model is based on standardized fertility measure and socio-economic indicators for each of 47 French-speaking provinces of Switzerland at about 1888, and is available in R as dataset **swiss**.
+The 5 indicators are Agriculture, Examination (army), Education, Catholic, and Infant Mortality and presented in percentage of total polulation. (*Please refer to R help for further details.*).  
+  
+The following slides provide and overview and instructions about the application.
+
+## Instructions for executing and using application
+
+- Executing application:  
+The application is executed from a html website hosted on Github.  
+Link to application is <https://snenning.shinyapps.io/myappddp_w4/>.
+
+- Using application for predicting fertility:  
+The application allows for 2 prediction models. First one using indicator *Agriculture* as indicator for predicting fertility. The second one is *Education*. The selection is done with radio buttons located on the left side of application interface.  
+The slider underneath allows for setting a value for the selected indicator for predicting the fertility.  
+Click "Submit" to execute application and update the output.
+
+
+## Application: Prediction Model
+The applicaion is using a **Linear Regression Model** for prediction. Example below for demonstraion purposes is for model1 with *Agriculture* as indicator and value 50 (percentage of population in agriculture) selected for prediction.  
+  
+*see R code for model and prediction below.*
+```{r model, echo = TRUE}
+  # calculate predicton models for indicators
+    model1 <- lm(Fertility ~ Agriculture, data = swiss)
+
+    IndicatorInput <- 50 #value retrieved from inputslider, set to 50 for demo
+    modelpred1 <- predict(model1, newdata = data.frame(Agriculture = IndicatorInput))
+```
+
+## Application output: Plot and prediction
+
+The application output is displayed on the right side. The plot shows a scatter plot of swiss fertility and selected indicator (in this case agriculture data), the linear regression prediction line, and as a point on the prediction line the predicted fertility for the selected indicidator value. 
+  
+  *see R code and plot output below.*
+```{r plot, echo = TRUE}
+        plot(swiss$Fertility, swiss$Agriculture, xlab = "% of males involved in agriculture as occupation", 
+             ylab = "Fertility", bty = "n", pch = 16) 
+        abline(model1, col = "red", lwd = 2) 
+        points(IndicatorInput , modelpred1, col = "red", pch = 16, cex = 2) 
+```
+
+The application output below the plot is the "Predicted Fertility for selected population percentage:"; in this example the predicted fertility is `r round(modelpred1,2)`.
